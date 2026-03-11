@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тянки ❤️</title>
+    <style>
+        body {
+            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;
+            height: 100vh; background-color: #ffe6ea; font-family: sans-serif; overflow: hidden;
+        }
+        .card {
+            background: white; padding: 40px; border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 75, 110, 0.2); text-align: center;
+            z-index: 10; transition: transform 0.3s; max-width: 300px;
+        }
+        .card:hover { transform: scale(1.02); }
+        h1 { color: #ff4b6e; font-size: 24px; margin-bottom: 20px; }
+        .heart {
+            font-size: 80px; color: #ff4b6e; cursor: pointer;
+            display: inline-block; animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .btn {
+            background: #ff4b6e; color: white; border: none; padding: 12px 25px;
+            border-radius: 25px; font-size: 16px; cursor: pointer; margin-top: 20px;
+        }
+        .bg-heart {
+            position: absolute; color: #ffb3c1; font-size: 20px;
+            user-select: none; z-index: 1; animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ТВОЯ ССЫЛКА ИЗ ДИСКОРДА -->
+<audio id="myAudio" loop src="https://cdn.discordapp.com&"></audio>
+
+<div class="card">
+    <div class="heart" onclick="addHeart()">❤️</div>
+    <h1>Ты пизже парадокси!</h1>
+    <p>Нажми на сердце, чтобы стало еще больше любви.</p>
+    <button class="btn" onclick="celebrate()">Сюрприз!</button>
+</div>
+
+<script>
+    let musicStarted = false;
+    const audio = document.getElementById('myAudio');
+
+    function startMusic() {
+        if (!musicStarted) {
+            audio.play().catch(e => console.log("Нужен клик для звука"));
+            musicStarted = true;
+        }
+    }
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('bg-heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+
+    function celebrate() {
+        startMusic();
+        alert('я тебя люблю тянка!хДДД');
+        for(let i=0; i<30; i++) {
+            setTimeout(createHeart, i * 100);
+        }
+    }
+
+    function addHeart() {
+        startMusic();
+        const h = document.querySelector('.heart');
+        h.style.transform = 'scale(1.5)';
+        setTimeout(() => h.style.transform = 'scale(1)', 200);
+        createHeart();
+    }
+
+    setInterval(createHeart, 600);
+</script>
+
+</body>
+</html>
